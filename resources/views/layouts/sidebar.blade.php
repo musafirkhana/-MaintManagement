@@ -28,7 +28,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
+          <li class="nav-item ">
             <a href="{{ url('dashboard') }}" class="nav-link {{ (request()->is('dashboard')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -60,24 +60,28 @@
              
             </ul>
           </li>
-          <li class="nav-item has-treeview {{ (request()->is('stock-mgmt')) ? 'menu-open' : '' }} ">
-            <a href="#" class="nav-link {{ (request()->is('stock-mgmt')) ? 'active' : '' }}">
+          <li class="nav-item has-treeview {{ (request()->is('stock-mgmt')) ? 'menu-open' : '' }}
+          {{ (request()->is('item-receiv-mgmt')) ? 'menu-open' : '' }}
+          {{ (request()->is('item-consume-mgmt')) ? 'menu-open' : '' }} ">
+            <a href="{{ url('stock-mgmt') }}" class="nav-link {{ (request()->is('stock-mgmt')) ? 'active' : '' }}
+            {{ (request()->is('item-receiv-mgmt')) ? 'active' : '' }}
+            {{ (request()->is('item-consume-mgmt')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-concierge-bell"></i>
               <p>
                 Spare Management
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview ">
               <li class="nav-item">
-                <a href="{{ url('stock-mgmt') }}" class="nav-link {{ (request()->is('stock-mgmt')) ? 'active' : '' }}">
+                <a href="{{ url('stock-mgmt') }}" class="nav-link {{ (request()->is('stock-mgmt')) ? 'active '  : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Stock</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item ">
                 <a href="{{ url('item-receiv-mgmt') }}" class="nav-link {{ (request()->is('item-receiv-mgmt')) ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-circle nav-icon "></i>
                   <p>Received Item</p>
                 </a>
               </li>
@@ -92,7 +96,9 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="nav-item has-treeview {{ (request()->is('entry-rect-mgmt')) ? 'menu-open' : '' }}
+          {{ (request()->is('entry-rect-mgmt')) ? 'menu-open' : '' }}"
+           class="nav-link {{ (request()->is('entry-rect-mgmt')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-stethoscope"></i>
               <p>
                 ENtries & Rectification
@@ -101,7 +107,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('entry-rect-mgmt') }}" class="nav-link">
+                <a href="{{ url('entry-rect-mgmt') }}" class="nav-link {{ (request()->is('entry-rect-mgmt')) ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Entries</p>
                 </a>
@@ -109,7 +115,7 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
+                  <p>Report</p>
                 </a>
               </li>
              

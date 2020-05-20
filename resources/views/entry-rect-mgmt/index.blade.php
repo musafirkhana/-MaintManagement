@@ -20,14 +20,25 @@
                 <form class="form-horizontal" action="{{ route('entry-rect-mgmt.search')}}" role="form" method="POST"  >
                 {{ csrf_field() }}
                     <div class="row">
-                        <div class="col-5">
-                            <input type="text" class="form-control" type="text" name="part_no" id="part_no" placeholder="Enter part no..." value="" >
+                        <div class="col-3">
+                            <input type="text" autocomplete="off"  class="form-control" type="text" name="start_date" id="start_date" placeholder="Start Date..." value="" >
                         </div>
-
+                        <div class="col-3">
+                            <input type="text" autocomplete="off" class="form-control" type="text" name="end_date" id="end_date" placeholder="End Date..." value="" >
+                        </div>
                         
-                        <div class="col-5">
+                        <div class="col-2">
+                            <select class="form-control select2"style="width: 100%;" name="ac_id">
+                                    @foreach ($AcData as $AcDatas)
+                                    <option value="{{$AcDatas->id}}"<?=$ac_ser_no == $AcDatas->id ? ' selected="selected"' : '';?>>{{$AcDatas->name}}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+                        <div class="col-2">
                             <select class="form-control select2"style="width: 100%;" name="trade_id">
-                                    <option value=""></option>
+                                    @foreach ($TradeData as $TradeDatas)
+                                    <option value="{{$TradeDatas->id}}"<?=$trade == $TradeDatas->id ? ' selected="selected"' : '';?>>{{$TradeDatas->name}}</option>
+                                    @endforeach
                             </select>
                         </div>
 

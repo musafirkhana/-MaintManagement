@@ -51,6 +51,7 @@ Route::get('item-acdocu-mgmt/remove/{id}', 'AcDocumentController@remove')->name(
 Route::resource('entry-rect-mgmt', 'EntryRectController');
 Route::post('entry-rect-mgmt/search', 'EntryRectController@search')->name('entry-rect-mgmt.search');
 Route::get('entry-rect-mgmt/remove/{id}', 'EntryRectController@remove')->name('entry-rect-mgmt.remove');
-
+Route::post('entry-rect-mgmt/storeaircraft', 'EntryRectController@storeaircraft')->name('entry-rect-mgmt.storeaircraft');
+Route::post('entry-rect-mgmt/storeEnType', 'EntryRectController@storeEnType')->name('entry-rect-mgmt.storeEnType');
 
 

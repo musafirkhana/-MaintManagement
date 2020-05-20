@@ -22,12 +22,12 @@
                     <div class="col-sm-10">
                         <select class="form-control select2"style="width: 100%;" name="ac_ser_no">
                         @foreach ($AcData as $AcDatas)
-                        <option value="{{$AcDatas->id}}"<?=$AcDatas->id == $datas->trade_name ? ' selected="selected"' : '';?>>{{$AcDatas->name}}</option>
+                        <option value="{{$AcDatas->id}}"<?=$AcDatas->id == $datas->ac_ser_no ? ' selected="selected"' : '';?>>{{$AcDatas->name}}</option>
                         @endforeach
                         </select>
                     </div>
                     <div class="col-sm-2">
-                        <a  href="{{ url('item-acdocu-mgmt') }}"  class=" btn btn-primary plus" data-toggle="tooltip" data-placement="left" title="edit">
+                    <a  href=""  class=" btn btn-primary plus"  data-toggle="modal" data-target="#modal-aircraft"data-placement="left" >
                         <i class="fas fa-plus"></i> </a>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                   <label>Trade</label>
                   <select class="form-control select2"style="width: 100%;" name="trade_name">
                         @foreach ($TradeData as $TradeDatas)
-                        <option value="{{$TradeDatas->id}}">{{$TradeDatas->name}}</option>
+                        <option value="{{$TradeDatas->id}}"<?=$TradeDatas->id == $datas->trade_name ? ' selected="selected"' : '';?>>{{$TradeDatas->name}}</option>
                         @endforeach
                   </select>
               </div>
@@ -70,12 +70,12 @@
                     <div class="col-sm-10">
                         <select class="form-control select2"style="width: 100%;" name="type_name">
                         @foreach ($TypeData as $TypeDatas)
-                        <option value="{{$TypeDatas->id}}">{{$TypeDatas->name}}</option>
+                        <option value="{{$TypeDatas->id}}"<?=$TypeDatas->id == $datas->type_name ? ' selected="selected"' : '';?>>{{$TypeDatas->name}}</option>
                         @endforeach
                         </select>
                     </div>
                     <div class="col-sm-2">
-                        <a  href="{{ url('item-acdocu-mgmt') }}"  class=" btn btn-primary plus" data-toggle="tooltip" data-placement="left" title="edit">
+                    <a  href="{{ url('item-acdocu-mgmt') }}"  class=" btn btn-primary plus"data-toggle="modal" data-target="#modal-entrytype" data-placement="left" >
                         <i class="fas fa-plus"></i> </a>
                     </div>
                 </div>
@@ -167,3 +167,63 @@
       </div>
       
 @endsection
+
+
+
+<div class="modal fade" id="modal-aircraft">
+<form role="form" method="POST" action="{{ route('entry-rect-mgmt.storeaircraft') }}" >
+{{ csrf_field() }}
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add New Aircraft</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <div class="form-group">
+              <label for="name">Aircraft Tail Number </label>
+              <input type="text" class="form-control" id="name" name="name"  placeholder="" value="" required>
+            </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+  </form>
+        <!-- /.modal-dialog -->
+</div>
+
+
+<!-- Modal for entry Type -->
+<div class="modal fade" id="modal-entrytype">
+<form role="form" method="POST" action="{{ route('entry-rect-mgmt.storeEnType') }}" >
+{{ csrf_field() }}
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add Type</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <div class="form-group">
+              <label for="name">Enter Type of entry </label>
+              <input type="text" class="form-control" id="name" name="name"  placeholder="" value="" required>
+            </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+  </form>
+        <!-- /.modal-dialog -->
+</div>
