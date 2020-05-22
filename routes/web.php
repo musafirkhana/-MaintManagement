@@ -54,4 +54,5 @@ Route::get('entry-rect-mgmt/remove/{id}', 'EntryRectController@remove')->name('e
 Route::post('entry-rect-mgmt/storeaircraft', 'EntryRectController@storeaircraft')->name('entry-rect-mgmt.storeaircraft');
 Route::post('entry-rect-mgmt/storeEnType', 'EntryRectController@storeEnType')->name('entry-rect-mgmt.storeEnType');
 
-
+Route::resource('ac-flghrs-mgmt', 'FlgHrsController');
+Route::get('ac-flghrs-mgmt/search', 'FlgHrsController@search')->name('ac-flghrs-mgmt.search');
