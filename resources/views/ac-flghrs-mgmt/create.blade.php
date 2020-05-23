@@ -37,7 +37,7 @@
 
           <div class="col-sm-6">
             <div class="form-group">
-              <label for="date_of_entry">Date </label>
+              <label for="flg_date">Date </label>
               <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -92,7 +92,7 @@
 
           <div class="col-sm-6">
             <div class="form-group">
-              <label for="item_status">Flg Hrs </label>
+              <label for="flg_hours">Flg Hrs </label>
               <input type="text" class="form-control" id="flg_hours" name="flg_hours"  placeholder="" value="" required >
             </div>
           </div>

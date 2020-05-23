@@ -137,9 +137,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url('tbo-tso-mgmt') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
+                  <p>Major Component Life</p>
                 </a>
               </li>
               <li class="nav-item">

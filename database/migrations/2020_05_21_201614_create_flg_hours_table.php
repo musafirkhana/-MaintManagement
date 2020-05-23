@@ -24,7 +24,7 @@ class CreateFlgHoursTable extends Migration
             $table->string('co_pilot', 500);
             $table->integer('msn_type')->unsigned();
             $table->foreign('msn_type')->references('id')->on('msn_table');
-            $table->integer('flg_hours')->unsigned();
+            $table->double('flg_hours')->unsigned();
             $table->integer('total_ldg')->unsigned();
             $table->integer('cycle_completed')->unsigned();
             $table->string('remarks', 1000)->nullable();

@@ -56,3 +56,6 @@ Route::post('entry-rect-mgmt/storeEnType', 'EntryRectController@storeEnType')->n
 
 Route::resource('ac-flghrs-mgmt', 'FlgHrsController');
 Route::get('ac-flghrs-mgmt/search', 'FlgHrsController@search')->name('ac-flghrs-mgmt.search');
+
+Route::resource('tbo-tso-mgmt', 'TboTsoController');
+Route::get('tbo-tso-mgmt/search', 'TboTsoController@search')->name('tbo-tso-mgmt.search');

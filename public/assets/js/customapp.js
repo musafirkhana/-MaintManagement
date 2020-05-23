@@ -74,6 +74,10 @@ $(function () {
   $('#date_of_rect').datepicker({
     autoclose: true,
     format: 'yyyy/mm/dd'
+  }); 
+  $('#flg_date').datepicker({
+    autoclose: true,
+    format: 'yyyy/mm/dd'
   });  
 //
 
