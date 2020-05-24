@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\AircraftModel;
 use App\AddFlghrsModel;
 use App\MsnTypeModel;
+use App\TboTsoModel;
+use App\ScheduleInspacModel;
 
 
 
@@ -21,7 +23,9 @@ class FlgHrsController extends Controller
         $datas = DB::table('flg_hours')
         ->leftJoin('aircraft', 'flg_hours.ac_ser_no', '=', 'aircraft.id')
         ->leftJoin('msn_table', 'flg_hours.msn_type', '=', 'msn_table.id')
-        ->select('flg_hours.*', 'aircraft.name as ac_ser_no','msn_table.name as msn_type')->get();
+        ->select('flg_hours.*', 'aircraft.name as ac_ser_no','msn_table.name as msn_type')
+        ->orderBy('flg_date', 'ASC')
+        ->get();
         
         $data['datas'] = $datas;
      
@@ -59,6 +63,17 @@ class FlgHrsController extends Controller
         $input = $this->createQueryInput($keys, $request);
         $input['month'] = $month;
         $input['year'] = $year;
+        
+   
+        $prev_flghrs = DB::table('flg_hours')
+                     ->select(DB::raw('sum(flg_hours) as flg_hours'))
+                     ->where('ac_ser_no', 'like', '%' . $request['ac_ser_no'] . '%')
+                     ->first();
+        $total_flg_hours=$prev_flghrs->flg_hours+$request['flg_hours'];
+        
+        $this->updateTboTso($request);
+        $this->updateScheduleInsp($request);
+        
         $this->validateInput($request); 
         AddFlghrsModel::create($input);
         return redirect()->intended('/ac-flghrs-mgmt');
@@ -66,6 +81,58 @@ class FlgHrsController extends Controller
        
     }
 
+
+    private function updateTboTso($request) {
+        $data = TboTsoModel::where('ac_ser_no', '=', $request['ac_ser_no'])->first();
+        $res = array(
+            'success' => false,
+            'message' => 'Please fix the error below.',
+            'rs_class' => 'danger',
+            'data' => []
+        );
+            
+         TboTsoModel::where('ac_ser_no', $request['ac_ser_no'])
+        ->update( [
+        'ac_ser_no' => $data['ac_ser_no'],
+        'ac_tso_hrs' => $data['ac_tso_hrs']+$request['flg_hours'],
+        'ac_tbo_hrs' => $data['ac_tbo_hrs'],
+        'eng_lt_tso_hrs' => $data['eng_lt_tso_hrs']+$request['flg_hours'],
+        'eng_rt_tso_hrs' => $data['eng_rt_tso_hrs']+$request['flg_hours'],
+        'eng_lt_tbo_hrs' => $data['eng_lt_tbo_hrs'],
+        'eng_rt_tbo_hrs' => $data['eng_rt_tbo_hrs'],
+        'prop_lt_tso_hrs' => $data['prop_lt_tso_hrs']+$request['flg_hours'],
+        'prop_rt_tso_hrs' => $data['prop_rt_tso_hrs']+$request['flg_hours'],
+        'prop_lt_tbo_hrs' => $data['prop_lt_tbo_hrs'],
+        'prop_rt_tbo_hrs' => $data['prop_rt_tbo_hrs'],
+        'remarks' => $data['remarks']]);
+        return redirect()->intended('/stock-mgmt');
+        
+   
+    }
+
+
+    private function updateScheduleInsp($request) {
+        $data = ScheduleInspacModel::where('ac_ser_no', '=', $request['ac_ser_no'])->get(); 
+        $tsoData = DB::table('ac_comp_tbotso')
+                     ->select(DB::raw('ac_tso_hrs'))
+                     ->where('ac_ser_no', 'like', '%' . $request['ac_ser_no'] . '%')
+                     ->first();
+        foreach ($data as $row) {
+         
+        ScheduleInspacModel::where('ac_ser_no', $request['ac_ser_no'])
+        ->where('insp_type', $row['insp_type'])
+        ->update( [
+        'left_hrs' => $row['due_hrs']-$tsoData->ac_tso_hrs,
+        'insp_carr_status' => $row['insp_carr_status'],
+        'insp_carr_date' => $row['insp_carr_date'],
+        'remarks' => $row['remarks']]);
+        }
+       
+      
+        return redirect()->intended('/stock-mgmt');
+        
+   
+    }
     /**
      * Display the specified resource.
      *

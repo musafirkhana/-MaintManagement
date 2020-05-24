@@ -59,3 +59,6 @@ Route::get('ac-flghrs-mgmt/search', 'FlgHrsController@search')->name('ac-flghrs-
 
 Route::resource('tbo-tso-mgmt', 'TboTsoController');
 Route::get('tbo-tso-mgmt/search', 'TboTsoController@search')->name('tbo-tso-mgmt.search');
+
+Route::resource('acschedule-insp-mgmt', 'AcheduleInspacController');
+Route::get('acschedule-insp-mgmt/search', 'AcheduleInspacController@search')->name('acschedule-insp-mgmt.search');

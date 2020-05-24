@@ -14,15 +14,13 @@
                    
                 </div>
 
-            
-
           </div>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div  class="table-responsive">
-        <table id="entry_rect_table" class="table table-striped table-bordered" style="width:100%; cellspacing="0">
+        <table id="major_comp_table" class="table table-striped table-bordered" style="width:100%; cellspacing="0">
             
             <thead>
             <tr>
