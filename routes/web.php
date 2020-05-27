@@ -62,3 +62,9 @@ Route::get('tbo-tso-mgmt/search', 'TboTsoController@search')->name('tbo-tso-mgmt
 
 Route::resource('acschedule-insp-mgmt', 'AcheduleInspacController');
 Route::get('acschedule-insp-mgmt/search', 'AcheduleInspacController@search')->name('acschedule-insp-mgmt.search');
+
+Route::resource('engschedule-insp-mgmt', 'EngScheduleInspController');
+Route::get('engschedule-insp-mgmt/search', 'EngScheduleInspController@search')->name('engschedule-insp-mgmt.search');
+
+Route::resource('letter-mgmt', 'LetterController');
+Route::get('letter-mgmt/search', 'LetterController@search')->name('letter-mgmt.search');

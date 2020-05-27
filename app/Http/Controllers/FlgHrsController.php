@@ -8,6 +8,7 @@ use App\AddFlghrsModel;
 use App\MsnTypeModel;
 use App\TboTsoModel;
 use App\ScheduleInspacModel;
+use App\ScheduleInspENgModel;
 
 
 
@@ -71,6 +72,7 @@ class FlgHrsController extends Controller
                      ->first();
         $total_flg_hours=$prev_flghrs->flg_hours+$request['flg_hours'];
         
+        $this->updateScheduleInspEng($request);
         $this->updateTboTso($request);
         $this->updateScheduleInsp($request);
         
@@ -105,7 +107,7 @@ class FlgHrsController extends Controller
         'prop_lt_tbo_hrs' => $data['prop_lt_tbo_hrs'],
         'prop_rt_tbo_hrs' => $data['prop_rt_tbo_hrs'],
         'remarks' => $data['remarks']]);
-        return redirect()->intended('/stock-mgmt');
+        return redirect()->intended('/ac-flghrs-mgmt');
         
    
     }
@@ -127,11 +129,32 @@ class FlgHrsController extends Controller
         'insp_carr_date' => $row['insp_carr_date'],
         'remarks' => $row['remarks']]);
         }
-       
+        return redirect()->intended('/ac-flghrs-mgmt');
+    }
+
+    private function updateScheduleInspEng($request) {
+        $data = ScheduleInspENgModel::where('ac_ser_no', '=', $request['ac_ser_no'])->get(); 
       
-        return redirect()->intended('/stock-mgmt');
-        
-   
+        $lt_tsoData = DB::table('ac_comp_tbotso')
+                     ->select(DB::raw('eng_lt_tso_hrs'))
+                     ->where('ac_ser_no', 'like', '%' . $request['ac_ser_no'] . '%')
+                     ->first();
+        $rt_tsoData = DB::table('ac_comp_tbotso')
+                     ->select(DB::raw('eng_rt_tso_hrs'))
+                     ->where('ac_ser_no', 'like', '%' . $request['ac_ser_no'] . '%')
+                     ->first();
+        foreach ($data as $row) {
+         
+            ScheduleInspENgModel::where('ac_ser_no', $request['ac_ser_no'])
+        ->where('insp_type', $row['insp_type'])
+        ->update( [
+        'left_hrs_lt_eng' => $row['due_hrs_lt_eng']-$lt_tsoData->eng_lt_tso_hrs,
+        'left_hrs_rt_eng' => $row['due_hrs_rt_eng']-$rt_tsoData->eng_rt_tso_hrs,
+        'insp_carr_status' => $row['insp_carr_status'],
+        'insp_carr_date' => $row['insp_carr_date'],
+        'remarks' => $row['remarks']]);
+        }
+        return redirect()->intended('/ac-flghrs-mgmt');
     }
     /**
      * Display the specified resource.

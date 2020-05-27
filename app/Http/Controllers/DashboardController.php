@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\AircraftModel;
 
 class DashboardController extends Controller
 {
@@ -22,6 +24,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $acDatas = AircraftModel::all();
+        
+        return view('dashboard', ['acData' => $acDatas]);
     }
 }

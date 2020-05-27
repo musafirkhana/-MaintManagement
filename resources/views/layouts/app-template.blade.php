@@ -74,7 +74,6 @@
     <!-- Footer -->
     <!-- ./wrapper -->
     <!-- REQUIRED JS SCRIPTS -->
-        <script src="{{ asset ("/assets/js/scripts.js")}}" type="text/javascript"></script>
 
 
 
@@ -83,6 +82,10 @@
 <script src="{{ asset ("/assets/AdminLTE-3.0.4/plugins/jquery/jquery.min.js")}}" type="text/javascript"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset ("/assets/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js")}}" type="text/javascript"></script>
+
+<!-- ChartJS -->
+<script src="{{ asset ("/assets/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js")}}" type="text/javascript"></script>
+
 <script src="{{ asset ("/assets/AdminLTE-3.0.4/plugins/datatables/jquery.dataTables.min.js")}}" type="text/javascript"></script>
 <script src="{{ asset ("/assets/AdminLTE-3.0.4/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js")}}" type="text/javascript"></script>
 <script src="{{ asset ("/assets/AdminLTE-3.0.4/plugins/datatables-responsive/js/dataTables.responsive.min.js")}}" type="text/javascript"></script>
@@ -102,10 +105,7 @@
 
 <script  src="{{ asset ("/assets/AdminLTE-3.0.4/plugins/daterangepicker/daterangepicker.js") }}" type="text/javascript" ></script>
     <script  src="{{ asset ("/assets/AdminLTE-3.0.4/plugins/datepicker/bootstrap-datepicker.js") }}" type="text/javascript" ></script>
-<!-- ChartJS -->
-<script src="{{ asset ("/assets/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js")}}" type="text/javascript"></script>
-<!-- PAGE SCRIPTS -->
-<script src="{{ asset ("/assets/AdminLTE-3.0.4/dist/js/pages/dashboard2.js")}}" type="text/javascript"></script>
+
 <!-- SweetAlert2 -->
 <script src="{{ asset ("/assets/AdminLTE-3.0.4/plugins/sweetalert2/sweetalert2.min.js")}}" type="text/javascript"></script>
 <!-- Toastr -->
@@ -118,6 +118,6 @@
 
 
         </div>
-     
+        
   </body>
 </html>
