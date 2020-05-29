@@ -114,6 +114,7 @@
 <script src="{{ asset ("/assets/AdminLTE-3.0.4/plugins/bs-custom-file-input/bs-custom-file-input.min.js")}}" type="text/javascript"></script>
 
 <script src="{{ asset ("/assets/js/customapp.js")}}" type="text/javascript"></script>
+<script src="{{ asset ("/assets/js/custom_chart.js")}}" type="text/javascript"></script>
 
 
 

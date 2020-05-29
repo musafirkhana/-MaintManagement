@@ -207,10 +207,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ url('letter-mgmt') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
-                Critical Item
+                Letter Management
               </p>
             </a>
           </li>

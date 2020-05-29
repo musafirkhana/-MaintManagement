@@ -1,4 +1,4 @@
-@extends('ac-flghrs-mgmt.base')
+@extends('letter-mgmt.base')
 @section('action-content')
 
 

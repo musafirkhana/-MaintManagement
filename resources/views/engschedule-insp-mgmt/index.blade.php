@@ -27,15 +27,15 @@
                 <th style="vertical-align : middle;text-align:center;" rowspan="2" >Aircraft</th>
                 <th style="vertical-align : middle;text-align:center;" rowspan="2" >Insp Type</th>
                 <th style="vertical-align : middle;text-align:center;" rowspan="2" >Insp Freq</th>
-                <th colspan="2" scope="colgroup">Right Eng  Hrs</th>
-                <th colspan="2" scope="colgroup">Left Prop  Hrs</th>
-                <th style="vertical-align : middle;text-align:center;" rowspan="2">Action</th>
+                <th colspan="2" style="vertical-align : middle;text-align:center;"scope="colgroup">Right Eng  Hrs</th>
+                <th colspan="2" style="vertical-align : middle;text-align:center;" scope="colgroup">Left Eng  Hrs</th>
+                <th style="vertical-align : middle;text-align:center " rowspan="2">Action</th>
             </tr>
             <tr>
-                <th scope="col">Due</th>
-                <th scope="col">Left</th>
-                <th scope="col">Due</th>
-                <th scope="col">Left</th>
+                <th scope="col"style="vertical-align : middle;text-align:center;">Due</th>
+                <th scope="col"style="vertical-align : middle;text-align:center;">Left</th>
+                <th scope="col"style="vertical-align : middle;text-align:center;">Due</th>
+                <th scope="col"style="vertical-align : middle;text-align:center;">Left</th>
               
           
             </tr>
@@ -55,7 +55,7 @@
         
                   
               
-                  <td style="min-width: 50px;" >
+                  <td style="" >
       
                         <a   href="{{ route('engschedule-insp-mgmt.edit', [$data->ac_ser_no]) }}"  data-placement="left" title="Edit">
                           <i class="far fa-edit"></i>   

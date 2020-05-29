@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 Route::get('/', 'DashboardController@index');
+Route::get('/getchart_data', 'DashboardController@getMonthlyData');
+Route::get('/getdonate_data', 'DashboardController@getYearSumData');
 Route::get('/dashboard', 'DashboardController@index');
 
 Route::resource('item-mgmt', 'ItemController');
@@ -68,3 +70,4 @@ Route::get('engschedule-insp-mgmt/search', 'EngScheduleInspController@search')->
 
 Route::resource('letter-mgmt', 'LetterController');
 Route::get('letter-mgmt/search', 'LetterController@search')->name('letter-mgmt.search');
+
